@@ -1,0 +1,167 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+
+<head><title> Report</title>
+       <style>
+       body{
+       padding-left: 10%;
+       padding-right: 20%;
+       }
+       #id{width: 80px;}
+       #none{width: 1px;
+       visibility: hidden; 
+       }
+     </style>
+</head>
+
+<body bgcolor ="#00FFFF">
+<p>
+<table align="right" width="150" bgcolor="#ffcc00">
+  <tr>
+    <td><center>
+    <form action='/logout' method='get'>
+      <input type='submit' value='Logout'>
+    </form>
+    <form action='/times/new' method='get'>
+      <input type='submit' value='Add new time'>
+    </form>
+    <form action='/new_project' method='get'>
+      <input type='submit' value='Add new project'>
+    </form>
+    <br>
+    <form action='/report' method='get'>
+      <input type='text' name='day' value='<%= params['day'] || Date.today.strftime('%d.%m.%Y') %>'></input>
+      <input type='submit' value='Serch days'>
+    </form>
+    </center>
+    </td>
+   </tr>
+</table>
+</body>
+
+<body>
+
+
+  <span><%= params['day'] || Date.today.strftime('%d.%m.%Y') %></span>
+    <p></p>
+    Self-development:
+    <table border="4" bgcolor ="white">
+     <thead>
+       <tr>
+         <th width="200">Project</th>
+         <th width="200">Activity</th>
+         <th width="200">Time</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% res_time_self=0 %>
+    <% @task_times[0].each do |task_time| 
+    res_time_self += task_time.tasktime.to_i
+    %>
+    <form action="/report_delete" method="post">
+           
+      <tr>
+        <td><%= task_time.project %><input type='text' id='none' name='id' value=<%= task_time.id %>></td>
+        <td><%= task_time.description %></td>
+        <td><%= task_time.tasktime %></td>
+        <td><input type="submit" id='in'  value="Delete"></td></form>            
+      </tr>
+    
+    <% end %>
+       
+      </tbody>
+     </table>
+   </table>
+    <p></p>  
+   Working time:
+   <table border="4" bgcolor ="white">
+     <thead>
+       <tr>
+         <th width="200">Project</th>
+         <th width="200">Activity</th>
+         <th width="200">Time</th>
+      </tr>
+    </thead>
+    <tbody>
+
+    <% res_time_work=0 %>
+    <% @task_times[1].each do |task_time|
+       res_time_work += task_time.tasktime.to_i
+    %>
+    <form action="/report_delete" method="post">
+      <tr>
+        <td><%= task_time.project %><input type='text' id='none' name='id' value=<%= task_time.id %>></td>
+        <td><%= task_time.description %></td>
+        <td><%= task_time.tasktime %></td>
+        <td><input type="submit" id='in' value="Delete"></td>
+      </tr>
+    </form>            
+    <% end %>
+    
+    
+      </tbody>
+     </table>
+   </table>
+   <p></p>
+   Extra time:
+   <table border="4" bgcolor ="white">
+     <thead>
+       <tr>
+         <th width="200">Project</th>
+         <th width="200">Activity</th>
+         <th width="200">Time</th>
+      </tr>
+    </thead>
+    <tbody>
+   
+    <% res_time_extra=0 %>
+    <% @task_times[2].each do |task_time|
+       res_time_extra += task_time.tasktime.to_i
+    %>
+    <form action="/report_delete" method="post">
+      <tr>
+        <td><%= task_time.project %><input type='text' id='none' name='id' value=<%= task_time.id %>></td>
+        <td><%= task_time.description %></td>
+        <td><%= task_time.tasktime %></td>
+        <td><input type="submit" id='in' value="Delete"></td>
+      </tr>
+    </form>            
+    <% end %>
+     </tbody>
+     </table>
+   </table>
+   <p></p>
+   Team work:
+   <table border="4" bgcolor ="white">
+     <thead>
+       <tr>
+         <th width="200">Project</th>
+         <th width="200">Activity</th>
+         <th width="200">Time</th>
+      </tr>
+    </thead>
+    <tbody>
+   
+    <% res_time_team=0 %>
+    <% @task_times[3].each do |task_time|
+       res_time_team += task_time.tasktime.to_i
+    %>
+    <form action="/report_delete" method="post">
+      <tr>
+        <td><%= task_time.project %><input type='text' id='none' name='id' value=<%= task_time.id %>></td>
+        <td><%= task_time.description %></td>
+        <td><%= task_time.tasktime %></td>
+        <td><input type="submit" id='in' value="Delete"></td>
+      </tr>
+    </form>            
+    <% end %>
+   
+   
+     </tbody>
+     </table>
+   </table>
+   <p>
+Self-development: <%= res_time_self%>, Work Time: <%= res_time_work%>, 
+Extra Time: <%= res_time_extra%>, Team work: <%= res_time_team%>
+</body>
+</html>

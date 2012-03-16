@@ -1,0 +1,21 @@
+Project Setup
+
+Create a database in your sql server named "reporte_development"
+
+edit "config/database.yml" with your mysql creadetials
+
+run "bundle install" in the project directory
+
+run "rake db:migrate"
+
+run "ruby report_app.rb"
+
+Go to your browser "http://localhost:4567"
+
+Into the login form insert 
+  Login: Junior
+  Password: qwe
+
+Enjoy!!!!))
+
+Remember if some of the ruby commands fails to run use "bundle exec"

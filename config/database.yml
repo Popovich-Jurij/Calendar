@@ -1,0 +1,7 @@
+---
+development:
+  adapter: mysql
+  host: localhost
+  database: reporte_development
+  username: root
+  password:

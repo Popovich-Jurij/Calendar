@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head><title> Report</title>
+       <style>
+       body{
+       padding-left: 10%;
+       padding-right: 20%;
+       padding-top: 7%;
+       }
+       table tbody tr td{
+       width: 200px;
+       height: 27px;
+       }
+     </style>
+     <link type="text/css" rel="stylesheet" href="http://www.dhtmlgoodies.com/scripts/js_calendar/dhtmlgoodies_calendar/dhtmlgoodies_calendar.css?random=20051112" media="screen"></LINK>
+     <script src="http://www.dhtmlgoodies.com/scripts/js_calendar/dhtmlgoodies_calendar/dhtmlgoodies_calendar.js?random=20060118"></script>
+</head>
+
+<body bgcolor ="#00FFFF">
+
+<p>
+<table align="right" width="150" bgcolor="#ffcc00">
+  <tr>
+    <td><center>    
+    <form action='/report' method='get'>
+      <input type='submit' value='Return'>
+    </form> 
+    <p></p>
+    <form action='/times/old' method='post'>
+      <input type='submit' value='Save'>
+     <br>
+    <p>
+    </center>
+    </td>
+   </tr>
+</table>
+</body>
+
+<body>
+   <td><input type='text' name='days' value='<%= Date.today.strftime('%d.%m.%Y') %>'><input type="button" value="Cal" onclick="displayCalendar(document.forms[1].days,'dd.mm.yyyy',this)">Paste data</td>
+    <p></p>
+    
+    <table border="3" bgcolor ="white">
+     <thead>
+       <tr>
+         <th>Project</th>
+         <th>Activity</th>
+         <th>Type Time</th>
+         <th>Time</th> 
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+          <td>
+          <select name="project">
+          <%= 
+          n = ""
+          qw = Project.find(:all)
+          qw.each do |a|
+          n = n+"<option value = #{a.name}>#{a.name}</option>"
+          end
+          n
+          %>
+          </select>
+          </td>
+          <td><input type='text' name='description' value='write description'></td>
+          
+          <td>
+          <select name="typetask">
+          <option value = self_development>Self-development</option>
+          <option value = working_time>Working time</option>
+          <option value = extra_time>Extra time</option>
+          <option value = team_work>Team work</option>
+          </select>
+          </td>
+          
+          <td><input type='text' name='tasktime' value=' write time '></td>
+      </tr>
+     </tbody>
+  </table>
+</body>
+</html>
